@@ -1,0 +1,38 @@
+﻿== A. removals
+   top-level instances removed: 4
+   orphaned cells cleared: 0
+== B. 1T1R pitch 1200 -> 1150 (edge gap 130 -> 80 um), W500 L20 unchanged
+   new 1T1R_single bbox (-2885000,-405000;2785000,405000)   old was (-2885000,-405000;2985000,405000)
+   column header labels re-centred: 4   new 1T1R bbox (-2935000,-3205000;2985000,2397500)
+== C. staggered bottom-gate TFT, HfO2-only dielectric (process split)
+   HfO2Only bbox (-1992500,75000;2042500,1921000)   source bbox (-1992500,75000;2042500,1955000)
+== D. Memristors_Gated de-crowd (whole-section rigid shift)
+   sections (top->bottom) instances [12, 12, 12, 6]  glyphs [33, 16, 13, 13]  shifts [534.0, 356.0, 178.0, 0.0]
+   Memristors_Gated new bbox (-1500,-2142500;1060500,1268100)
+   Memristors_Gated instance moved to bbox (4220000,1780000;5282000,5190600)
+   Transistors_BottomGate_HfO2Only placed at (-1150000,4625000;2885000,6471000)
+
+== E. verification
+   blocks: ['1T1R', 'AL2O3_INTEGRITY', 'CBKR_Structures', 'HFO2_MIM', 'MEM_ASYM', 'MEM_HIGH_VALUE', 'MEM_REDUNDANT', 'MEM_STACK_SPLIT', 'MIS_Capacitors', 'Memristors', 'Memristors_Gated', 'SPLIT_CV', 'STEP_COVERAGE', 'TestStructures', 'Transistors_BottomGate', 'Transistors_BottomGate_HfO2Only', 'XBAR_4X4']
+   connectivity / fabricability findings: 4
+       ('MIS_Capacitors', 'Metal_1 island floating') x 4
+   overlay-rule findings (ENC 3.0 um, OVL 2.0 um): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   block gap < 60 um: (6.5, 'CBKR_Structures', '1T1R')
+   TEXT$ collisions: 0
+   alignment-mark clearance violations: 0
+   nets 1T1R: 120  pads-per-net {2: 30, 1: 90}   (reference, same generator @ pitch 1200: 120 nets, {2: 30, 1: 90})
+   nets Transistors_BottomGate_HfO2Only: 36  (reference Transistors_BottomGate: 36)
+   DRC 2um  TOP: width 25 space 63
+   DRC 2um  1T1R                            : width 0 space 0
+   DRC 2um  Transistors_BottomGate_HfO2Only : width 0 space 0
+   DRC 2um  Memristors_Gated                : width 0 space 0
+   TOP-own geometry differs from v35 by um2: 0
+   top-level TEXT$ instances differing from v35: 0
+   cells whose geometry changed vs v35: ['1T1R', 'Memristors_Gated', 'TOP']
+   deleted cells (present in v35, absent in v36): ['1T1R_LSWEEP', '1T1R_WSWEEP', '1T1R_single', 'HFO2_TDDB', 'RESERVED_AREA']
+   new cells (absent in v35, present in v36): ['1T1R_single_v36', 'Transistors_BottomGate_HfO2Only']
+   1T1R device footprint width 1070.0 um, pitch 1150.0 um -> edge gap 80.0 um (target 80)
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v36_HK\v36_HK.oas

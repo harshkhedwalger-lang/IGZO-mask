@@ -1,0 +1,31 @@
+== 1. removing AL2O3_INTEGRITY, HFO2_MIM, SPLIT_CV (top-level), MIS_CV_Block (in TestStructures)
+   removed SPLIT_CV  bbox(um) [3060.0, 2790.3, 3830.0, 3582.4]
+   removed HFO2_MIM  bbox(um) [4210.0, -3003.5, 5350.0, -1250.0]
+   removed AL2O3_INTEGRITY  bbox(um) [5500.0, -798.1, 7040.0, 1650.0]
+   removed MIS_CV_Block  bbox(um) [2380.0, -1890.0, 4652.0, -86.0]
+
+== 2. build GATE OXIDE 2 TESTS (HfO2) from the existing 6-device Al2O3 row
+   captured {'Metal_1': 30, 'Isolation_1': 24, 'Metal_2': 30, 'Passivation': 24} source shapes from the Al2O3 row
+   12 BE labels, 12 TE labels found (expect 12 each: 2/device x 6)
+   inserted: Metal_2(BE) 30, Metal_3(TE) 30, Isolation_1(BE-only) 12, Passivation 24
+   Isolation_1 shapes dropped as TE-band (no longer needed under M3 pads): 12
+   duplicated 12 BE + 12 TE per-device labels at new positions
+   title drawn: GATE OXIDE 2 TESTS (HFO2, BE=M2 TE=M3)
+
+== verification
+   confirmed absent: AL2O3_INTEGRITY, HFO2_MIM, SPLIT_CV, MIS_CV_Block
+   new row vs old Al2O3 row overlap um2: 0.0
+   new row overlap vs other TOP blocks um2: 0
+   new row overlap vs alignment keepout um2: 0.0
+   cells other than TOP/TestStructures whose geometry changed vs v43: []
+   Al2O3 row geometry unchanged (xor area um2): 0.0
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  TestStructures: width 0 space 0
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v44_HK\v44_HK.oas

@@ -1,0 +1,25 @@
+﻿== 1T1R: move up, bounded by the real clearance to SYN_1T1R
+   1T1R top 2209  SYN_1T1R bottom 2909  current gap 700 um
+   candidate move by dy=580.0 um -- overlap check vs every other block: none
+   1T1R moved up by 580.0 um -> new bbox (-1800000,-2813500;4120000,2789000)
+
+== verification
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   1T1R gaps < 60 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+   cells whose geometry changed vs v41: ['TOP']
+
+   -- space check for STEP_COVERAGE / XBAR_4X4 / SPLIT_CV / PERF_TFT --
+   STEP_COVERAGE  needs 1080 x 1519 um
+   XBAR_4X4       needs 1100 x 1272 um
+   SPLIT_CV       needs 770 x 792 um
+   PERF_TFT       needs 5032 x 1706 um
+   PERF_TFT->Memristors clearance today: 1501 um (PERF_TFT needs 1706 um of it to move down flush)
+   space freed below the NEW 1T1R position: 1775 um tall (bounded above by CBKR_Structures/MEM_HIGH_VALUE, not just TestStructures)
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v42_HK\v42_HK.oas

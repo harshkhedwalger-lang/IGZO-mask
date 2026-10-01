@@ -1,0 +1,24 @@
+﻿SYN_1T1R block (0,-1510000;3855000,126000)    PERF_TFT block (0,-1580000;5032000,126000)
+   placed SYN_1T1R [-1100, 2909, 2755, 4545]
+   placed PERF_TFT [-6600, 2839, -1568, 4545]
+
+== verification
+   connectivity findings: 4
+       ('MIS_Capacitors', 'Metal_1 island floating') x 4
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   net extraction: 8 synapse cells (4 nets, 1 pad each), 14 TFT cells (3 nets, 1 pad each), mismatches 0
+   SYN_W500_L20_J2: channel IGZO 130 x 125 um, memristor junction area 4.0 um2
+   SYN_W500_L20_J4: channel IGZO 130 x 125 um, memristor junction area 16.0 um2
+   PT_REF_W100_L10: channel IGZO 30 x 100 um
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   new-block gaps < 80 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark / label keep-out violations: 0
+   in-cell label collisions: 0
+   DRC 2um  TOP: width 25 space 63
+   DRC 2um  SYN_1T1R : width 0 space 0
+   DRC 2um  PERF_TFT : width 0 space 0
+   existing cells whose geometry changed vs v36: ['TOP']
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v37_HK\v37_HK.oas

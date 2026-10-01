@@ -1,0 +1,31 @@
+pads resized (160->150): 392
+windows resized (150->140): 544
+windows NOT paired with any pad (left untouched): 158
+   unpaired window example: ('CBKR_M2G_4x20', 'Passivation', [3125.0, -3290.0, 3275.0, -3140.0])
+   unpaired window example: ('CBKR_M2G_4x20', 'Passivation', [2910.0, -3075.0, 3060.0, -2925.0])
+   unpaired window example: ('CBKR_M2G_4x20', 'Passivation', [3340.0, -3075.0, 3490.0, -2925.0])
+   unpaired window example: ('CBKR_M2G_4x20', 'Passivation', [3125.0, -2860.0, 3275.0, -2710.0])
+   unpaired window example: ('CBKR_M2G_8x10', 'Passivation', [3125.0, -3290.0, 3275.0, -3140.0])
+   unpaired window example: ('CBKR_M2G_8x10', 'Passivation', [2910.0, -3075.0, 3060.0, -2925.0])
+   unpaired window example: ('CBKR_M2G_8x10', 'Passivation', [3340.0, -3075.0, 3490.0, -2925.0])
+   unpaired window example: ('CBKR_M2G_8x10', 'Passivation', [3125.0, -2860.0, 3275.0, -2710.0])
+   unpaired window example: ('CBKR_M2G_4x10', 'Passivation', [3125.0, -3290.0, 3275.0, -3140.0])
+   unpaired window example: ('CBKR_M2G_4x10', 'Passivation', [2910.0, -3075.0, 3060.0, -2925.0])
+touching polygons (tapers etc.) adjusted: 383  (1748 vertices moved)
+cells touched: 58
+
+== verification
+   shape-count mismatches (old vs new, per cell/layer): 0
+   160x160 pad squares remaining anywhere: 0
+   150x150 windows still paired with a (new) 150x150 pad: 0
+   150x150 pad squares now present: 402 (built 392)
+   140x140 window squares now present: 544 (built 544)
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v46_HK\v46_HK.oas

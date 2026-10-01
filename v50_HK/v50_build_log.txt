@@ -1,0 +1,50 @@
+== 1. redraw the 14 high-Id TFT cells to the main-TFT overlap convention
+   PT_REF_W100_L10     400.0 x  620.0 um
+   PT_IDT_W1000_L10    455.0 x  690.0 um
+   PT_IDT_W1000_L5     405.0 x  690.0 um
+   PT_IDT_W2000_L10    455.0 x  790.0 um
+   PT_LOV2             400.0 x  614.0 um
+   PT_LOV10            400.0 x  630.0 um
+   PT_LOV20            400.0 x  650.0 um
+   PT_LOV40            400.0 x  690.0 um
+   PT_L2               400.0 x  612.0 um
+   PT_L3               400.0 x  613.0 um
+   PT_L5               400.0 x  615.0 um
+   PT_L20              400.0 x  630.0 um
+   PT_L50              400.0 x  660.0 um
+   PT_L100             400.0 x  710.0 um
+
+== 2. re-pack
+   PERF_TFT: 4 columns [4, 4, 4, 2]
+   PERF_TFT TOP bbox [-6600.0, 1474.0, -4760.0, 4545.0]   SYN_1T1R TOP bbox [-4640.0, 1444.0, -3180.0, 4545.0]
+
+== verification
+   PT_REF_W100_L10    L= 10.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   PT_IDT_W1000_L10   10 channels, fingers 5/150 um (outer/inner) all on the gate -> 5 um per channel side
+   PT_IDT_W1000_L5    10 channels, fingers 5/150 um (outer/inner) all on the gate -> 5 um per channel side
+   PT_IDT_W2000_L10   10 channels, fingers 5/150 um (outer/inner) all on the gate -> 5 um per channel side
+   PT_LOV2            L= 10.0  W=100.0  overlap S/D = 2.0/2.0 um  IGZO past gate = 45.0 um
+   PT_LOV10           L= 10.0  W=100.0  overlap S/D = 10.0/10.0 um  IGZO past gate = 45.0 um
+   PT_LOV20           L= 10.0  W=100.0  overlap S/D = 20.0/20.0 um  IGZO past gate = 45.0 um
+   PT_LOV40           L= 10.0  W=100.0  overlap S/D = 40.0/40.0 um  IGZO past gate = 45.0 um
+   PT_L2              L=  2.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   PT_L3              L=  3.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   PT_L5              L=  5.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   PT_L20             L= 20.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   PT_L50             L= 50.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   PT_L100            L=100.0  W=100.0  overlap S/D = 5.0/5.0 um  IGZO past gate = 45.0 um
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   PERF_TFT: device pairs overlapping or < 20 um apart: 0
+   SYN_1T1R: device pairs overlapping or < 20 um apart: 0
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   PERF_TFT gaps < 60 um to neighbours: none
+   SYN_1T1R gaps < 60 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61   (baseline 25 / 61)
+   DRC 2um  PERF_TFT: width 0 space 0
+   cells changed outside the intended set: []
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v50_HK\v50_HK.oas

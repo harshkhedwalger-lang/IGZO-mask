@@ -1,0 +1,23 @@
+﻿== 1. remove FGTFT_L30_W380_N8 from TestStructures
+   removed 35 shapes/instances; TestStructures bbox now (-2134000,-1133250;1986000,903250)
+== 2. relocate the MIS capacitor family into the freed area
+   MIS_CV_Block repacked bbox (0,-1720000;2271996,84000)
+   placed with offset (0,40) um from the target corner -- clears the alignment keep-out
+   placed at (local to TestStructures) (2380000,-1890000;4651996,-86000)
+   TestStructures final bbox (-2134000,-1890000;4651996,903250)
+
+== verification
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   MIS device net topology unchanged by the move -- mismatches: 0
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   TestStructures gaps < 60 um to neighbours after growing: none
+   TEXT$ collisions: 0
+   alignment-mark / label keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  TestStructures: width 0 space 0
+   TOP-own geometry differs from v38 by um2: 0
+   cells OTHER than TestStructures/MIS_Capacitors_v2 whose geometry changed vs v38: ['TOP']
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v39_HK\v39_HK.oas

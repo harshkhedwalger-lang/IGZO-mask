@@ -1,0 +1,76 @@
+== 1. PERF_TFT: drop the L ladder
+   PERF_TFT: columns [4, 4]
+   SYN_1T1R: columns [4, 4]
+   PERF_TFT [-6600.0, 1474.0, -5679.4, 4545.0]  SYN_1T1R [-5559.4, 1444.0, -4099.4, 4545.0]
+
+== 2. W500 blocks: third row L3, L3, L2, L2
+   Transistors_BottomGate: template 12 shapes -> 4 devices added; TOP bbox [-5260.0, 3720.0, -1225.0, 6505.0]
+   Transistors_BottomGate_HfO2Only: template 12 shapes -> 4 devices added; TOP bbox [-1150.0, 3720.0, 2885.0, 6461.0]
+
+== 3. novel devices
+   NV_4PR_M1       715.0 x  670.0 um
+   NV_4PR_M2       715.0 x  670.0 um
+   NV_FG_R0        377.0 x  620.0 um
+   NV_FG_R2        457.0 x  620.0 um
+   NV_FG_R5        477.0 x  620.0 um
+   NV_FG_R2_PAD    700.4 x  620.0 um
+   NV_SPLIT_M1S    658.4 x  630.0 um
+   NV_SPLIT_M2S    658.4 x  630.0 um
+   NV_2T0C_L10     707.9 x  620.0 um
+   NV_2T0C_L50     707.9 x  660.0 um
+   NV_2T0C_CAL     707.9 x  640.0 um
+   NOVEL_DEVICES: columns [6, 5], 1630 x 4201 um
+
+== 4. overlay verniers
+   OVL_VERNIERS 1347 x 789 um
+
+== 5. placement
+   NOVEL_DEVICES   placed at [4180.0, 2049.0, 5810.3, 6250.0]
+   OVL_VERNIERS    placed at [-1140.0, 2971.0, 207.0, 3760.0]
+
+== verification
+   Transistors_BottomGate           col  -287.5: L=3.0 gate=13.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate           col   387.5: L=3.0 gate=13.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate           col  1062.5: L=2.0 gate=12.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate           col  1737.5: L=2.0 gate=12.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate_HfO2Only  col  -287.5: L=3.0 gate=13.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate_HfO2Only  col   387.5: L=3.0 gate=13.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate_HfO2Only  col  1062.5: L=2.0 gate=12.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   Transistors_BottomGate_HfO2Only  col  1737.5: L=2.0 gate=12.0 overlap 5.0/5.0 IGZO past gate 45.0 W=500
+   NV_4PR_M1: probe tips on gated IGZO tabs, no M3 on bare gate dielectric
+   NV_4PR_M2: probe tips on gated IGZO tabs, no M3 on bare gate dielectric
+   NV_SPLIT_M1S: M1/M2 gates overlap 4.0 um at the split (no ungated gap), no stray M3-on-M2
+   NV_SPLIT_M2S: M1/M2 gates overlap 4.0 um at the split (no ungated gap), no stray M3-on-M2
+   NV_FG_R0     : CG inside FG, FG floating; A(CG-FG)/A(channel strip) = 0.67
+   NV_FG_R2     : CG inside FG, FG floating; A(CG-FG)/A(channel strip) = 2.37
+   NV_FG_R5     : CG inside FG, FG floating; A(CG-FG)/A(channel strip) = 5.17
+   NV_FG_R2_PAD : CG inside FG, FG on its own pad; A(CG-FG)/A(channel strip) = 2.37
+   NV_2T0C_L10: write-TFT drain -> Iso1 landing on M2 -> read-TFT gate: connected; no M1 under the landing
+   NV_2T0C_L50: write-TFT drain -> Iso1 landing on M2 -> read-TFT gate: connected; no M1 under the landing
+   NV_2T0C_CAL: write-TFT drain -> Iso1 landing on M2 -> read-TFT gate: connected; no M1 under the landing
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   Iso1 windows exposing M1 under IGZO: 0
+   PERF_TFT: device pairs overlapping or < 20 um apart: 0
+   SYN_1T1R: device pairs overlapping or < 20 um apart: 0
+   NOVEL_DEVICES: device pairs overlapping or < 20 um apart: 0
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   PERF_TFT                         gaps < 60 um: none
+   SYN_1T1R                         gaps < 60 um: none
+   Transistors_BottomGate           gaps < 60 um: none
+   Transistors_BottomGate_HfO2Only  gaps < 60 um: none
+   NOVEL_DEVICES                    gaps < 60 um: none
+   OVL_VERNIERS                     gaps < 60 um: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61   (baseline 25 / 61)
+   DRC 2um  NOVEL_DEVICES: width 0 space 0
+   DRC 2um  OVL_VERNIERS: width 0 space 0
+   DRC 2um  Transistors_BottomGate: width 0 space 0
+   DRC 2um  Transistors_BottomGate_HfO2Only: width 0 space 0
+   DRC 2um  PERF_TFT: width 0 space 0
+   cells changed outside the intended set: []
+   original 12 devices of both W500 blocks unchanged
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v51_HK\v51_HK.oas

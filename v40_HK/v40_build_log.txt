@@ -1,0 +1,36 @@
+﻿== zones identified from real geometry
+   upper zone (pre-move) bbox (-2084000,-415891;1181000,773250)   lower zone (pre-move) bbox (-2134000,-1133250;1986000,-513250)
+   upper 3265x1189  lower 4120x620  MIS_CV_Block 2272x1804
+   upper/lower zones: nudged by (+0,+60) um together to clear TOP-own geometry / alignment marks
+== applying rigid moves
+   upper zone: {'Metal_1': 22, 'Isolation_1': 7, 'IGZO': 3, 'Metal_3': 25, 'Passivation': 25} shape groups + 10 text instances moved by (-50.0,-695.1)
+   lower zone: {'Metal_1': 30, 'Isolation_1': 24, 'Metal_2': 30, 'Passivation': 24} shape groups + 25 text instances moved by (0.0,-747.8)
+   MIS_CV_Block moved by (0.0,0.0)
+   TestStructures new bbox (-2184000,-1890000;4651996,208141)
+
+== verification
+   congruence (Metal_1): v39 area 2717365.0 cnt 52  ->  v40 area 2717365.0 cnt 52  OK
+   congruence (Isolation_1): v39 area 878525.0 cnt 31  ->  v40 area 878525.0 cnt 31  OK
+   congruence (Metal_2): v39 area 428100.0 cnt 30  ->  v40 area 428100.0 cnt 30  OK
+   congruence (IGZO): v39 area 1510476.0 cnt 3  ->  v40 area 1510476.0 cnt 3  OK
+   congruence (Metal_3): v39 area 368445.0 cnt 25  ->  v40 area 368445.0 cnt 25  OK
+   congruence (Passivation): v39 area 760125.0 cnt 49  ->  v40 area 760125.0 cnt 49  OK
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   TestStructures gaps < 60 um to neighbours: [(18.0, 'MEM_HIGH_VALUE')]
+   TEXT$ collisions: 0
+   alignment-mark / label keep-out violations: 0
+   DEBUG up_final bbox (-2134000,-1111000;1131000,78141) lo_final bbox (-2134000,-1881000;1986000,-1261000) mis_r bbox (2380000,-1890000;4651996,-86000) MID -1246.0
+   internal overlap upper<->lower: 0.0
+   internal overlap upper<->MIS: 0.0
+   internal overlap lower<->MIS: 0.0 bbox ()
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  TestStructures: width 0 space 0
+   TOP-own geometry differs from v39 by um2: 0
+   cells OTHER than TestStructures whose geometry changed vs v39: ['TOP']
+
+   footprint: old TestStructures 0..  new 6836 x 2098 um  (old was 6786 x 2793 um)
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v40_HK\v40_HK.oas

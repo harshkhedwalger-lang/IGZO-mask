@@ -1,0 +1,52 @@
+﻿== A. removals
+   removed instance Dual_Gate
+   removed instance Transistors_TopGate
+   Transistors_BottomGate coplanar rows: 177 shapes/instances removed
+   TestStructures GATE OXIDE 2 row: 97 shapes/instances removed
+   ResolutionTests L7 row: 131 shapes/instances removed
+   Metal_4 shapes cleared: 122
+   orphaned cells deleted: 17 ['Dual_Gate', 'Transistors_TopGate']
+   1T1R generator vs existing device: differing area um2 = 0.0
+   TDDB arrays: A width 2800, B width 1600
+== C. overlay enclosure patches (ENC = 3.0 um)
+   patched   28 x junction window (M2, M3, IGZO)
+   patched   42 x pad window M1
+   patched   42 x pad window M2
+   patched   42 x pad window M3 cap
+   patched   42 x passivation window M3
+   patched   42 x passivation window Metal_1
+   patched   42 x passivation window Metal_2
+   patched    8 x resistor end window (M2 wider)
+== D. placement
+   1T1R_WSWEEP [-1046, 2804, 2424, 6415]
+   1T1R_LSWEEP [4220, 3639, 6420, 6350]
+   HFO2_TDDB [-5200, 2774, -2400, 4490]
+   reserved area (um): (4220, 1780, 6560, 3489.0)  size 2340 x 1709.0
+   TDDB block width 2800 height 1716   F2 is 4035 x 1955
+
+== E. verification
+   layers in file: ['63', 'Alignment', 'IGZO', 'Isolation_1', 'Metal_1', 'Metal_2', 'Metal_3', 'Passivation']  Metal_4 present: False
+   connectivity / fabricability findings: 4
+       ('MIS_Capacitors', 'Metal_1 island floating') x 4
+   overlay-rule findings (ENC 3.0 um, OVL 2.0 um): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   nets 1T1R_WSWEEP: 48 (expect 48 = 12 devices x G,S,D/BE,TE)  pads per net {1: 36, 2: 12}  (expect 12x1 G, 12x1 S, 12x2 D/BE, 12x1 TE)
+   nets 1T1R_LSWEEP: 24 (expect 24 = 6 devices x G,S,D/BE,TE)  pads per net {1: 18, 2: 6}  (expect 6x1 G, 6x1 S, 6x2 D/BE, 6x1 TE)
+   nets HFO2_TDDB: 32 (expect 32 = 30 TE + 2 BE buses)  BE nets carry [2, 2] pads (expect [2, 2])
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   block gap < 60 um: (6.5, 'CBKR_Structures', '1T1R')
+   block gap < 60 um: (50.0, 'Memristors_Gated', 'HFO2_MIM')
+   TEXT$ collisions: 0
+   alignment-mark clearance violations: 0
+   in-block label collisions: 0
+   DRC 2um  TOP: width 25 space 63
+   DRC 2um  1T1R_WSWEEP  : width 0 space 0
+   DRC 2um  1T1R_LSWEEP  : width 0 space 0
+   DRC 2um  HFO2_TDDB    : width 0 space 0
+   DRC markers new vs v34 (excluding removed structures): 0
+   TOP-own geometry differs from v34 by um2: 0
+   TEXT$ instances differing from v34/v22: 0
+   cells whose geometry changed vs v34: ['MEM_A3_1', 'MEM_A3_2', 'MEM_A3_3', 'MEM_G2_1', 'MEM_G2_2', 'MEM_G2_3', 'MEM_G3_1', 'MEM_G3_2', 'MEM_G3_3', 'MEM_G4_1', 'MEM_G4_2', 'MEM_G4_3', 'MEM_G6_1', 'MEM_G6_2', 'MEM_G6_3', 'MEM_HIGH_VALUE', 'MEM_O2_1', 'MEM_O2_2', 'MEM_O2_3', 'MEM_O3_1', 'MEM_O3_2', 'MEM_O3_3', 'MEM_O4_1', 'MEM_O4_2', 'MEM_O4_3', 'MEM_O6_1', 'MEM_O6_2', 'MEM_O6_3', 'MEM_REDUNDANT', 'MEM_STACK_SPLIT', 'MEM_T3_1', 'MEM_T3_2', 'MEM_T3_3', 'MEM_V2_1', 'MEM_V2_2', 'MEM_V2_3', 'MEM_V3_1', 'MEM_V3_2', 'MEM_V3_3', 'MEM_V4_1', 'MEM_V4_2', 'MEM_V4_3', 'MEM_V6_1', 'MEM_V6_2', 'MEM_V6_3', 'MIS_caps_M1_IGZO', 'Memristors_Gated', 'ResolutionTests', 'TOP', 'TS', 'TestStructures', 'Transistors_BottomGate', 'gated_vanderPauw']
+   remaining Transistors_BottomGate IGZO islands: 12
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v35_HK\v35_HK.oas

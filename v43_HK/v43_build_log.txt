@@ -1,0 +1,27 @@
+﻿== 1. Memristors_Gated: 42 devices found: 42
+   75 own header glyphs, topmost y 1268
+   old headers cleared (all 4 type-section headers + title -- title text is redrawn fresh below)
+   2x2 length-group grid, total footprint 2284 x 1439 um
+   42 target positions computed for 42 devices
+   42 devices moved to their new grouped position
+   title + 4 length-group headers drawn
+   Memristors_Gated relocated to TOP bbox (4616000,5160756;6900000,6706000)
+
+== verification
+   device-to-device overlaps: 0
+   label-to-device collisions: 0
+   device set unchanged: True  (42 devices)
+   spot-checked device cell definitions: unchanged
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   Memristors_Gated new TOP bbox (4616000,5160756;6900000,6706000)
+   Memristors_Gated gaps < 60 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  Memristors_Gated: width 0 space 0
+   cells OTHER than Memristors_Gated whose geometry changed vs v42: ['TOP']
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v43_HK\v43_HK.oas

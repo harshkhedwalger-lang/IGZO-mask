@@ -1,0 +1,39 @@
+== 1T1R: snap the flat 6th row onto the array columns
+== ResolutionTests -> die corners
+   ResolutionTests at [-7270.0, 4802.5, -6074.8, 6580.0]
+   ResolutionTests at [6074.8, -6580.0, 7270.0, -4802.5]
+   STEP_COVERAGE moved 40 um down -> [620.0, -4450.9, 1690.0, -2936.8]
+
+== text -> Basic.TEXT PCells
+   text lines collected: Counter({'pcell': 158, 'std': 86, 'glm': 66})
+   unresolved text placements: []   needed the wide search: [('MISv2_S200_F1', ['S200 F1'])]
+   placed: Counter({'L': 173, 'N': 127, 'T': 21})  distinct text cells: 177
+
+== re-pack
+   PERF_TFT: columns [4, 4]
+   SYN_1T1R: columns [4, 4]
+   NOVEL_DEVICES: columns [6, 5]
+   PERF_TFT       [-6600.0, 1474.0, -5655.1, 4562.0]
+   SYN_1T1R       [-5535.1, 1444.0, -4032.6, 4562.0]
+   NOVEL_DEVICES  [4180.0, 2049.0, 5867.0, 6296.0]
+
+== verification
+   polygon text lines left (std_font): []
+   text instances: 608  non-PCell: []
+   sizes: {'mag 50': 173, 'mag 30': 327, 'mag 100': 21, 'exempt mag 350': 2, 'exempt mag 900': 1, 'exempt mag 50': 72, 'exempt mag 250': 12}
+   text clearance violations: 0
+   1T1R flat-row M3 electrode lefts: [-2885, -2570, -2435, -1735, -1420, -1285, -585, -270, -135, 565, 880, 1015, 1715, 2030, 2165]
+   ResolutionTests: [[6074.8, -6580.0, 7270.0, -4802.5], [-7270.0, 4802.5, -6074.8, 6580.0]]
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   PERF_TFT: device pairs overlapping or < 20 um apart: 0
+   SYN_1T1R: device pairs overlapping or < 20 um apart: 0
+   NOVEL_DEVICES: device pairs overlapping or < 20 um apart: 0
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   block pairs closer than 60 um: []
+   alignment-cross keep-out violations: 0
+   DRC 2um  TOP: width 25 space 26   (v51: 25 / 61)
+   non-text geometry changed outside the intended edits: []
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v52_HK\v52_HK.oas

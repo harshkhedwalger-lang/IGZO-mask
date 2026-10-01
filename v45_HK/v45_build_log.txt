@@ -1,0 +1,39 @@
+== 1. capture everything read-only, before any mutation ==
+   GATE OXIDE 1: 108 shapes, 12 BE + 12 TE labels, 1 title
+   TLM+GreekCross block: 82 shapes, 1 title (TLM); Greek-cross has none yet
+   v44 split OXIDE2 to erase: 130 shapes, 24 labels
+   MIS_CV_Block restore transform: r0 2380000,-170000
+
+== 2. compute the new 3-row layout (bottom-up) ==
+   H_OX=746.0 H_TOP=1319.1
+   row3 (OXIDE2, new)   y -1890.0 .. -1144.0  (== old OXIDE1 slot, dy=0)
+   row2 (OXIDE1, moved) y -994.0 .. -248.0  dy=896.0
+   row1 (TLM+GX, moved) y -98.0 .. 1221.1  dy=1013.0
+   new row1 top in TOP coords: -3575.6, nearest obstacle (1T1R) bottom -2813.5, margin 762.1 um
+
+== 3. erase (v44 split OXIDE2, and the originals about to be re-inserted shifted) ==
+   erased v44 split OXIDE2 geometry + 24 labels
+   erased original GATE OXIDE 1 geometry + labels + title (about to reinsert shifted)
+   erased original TLM+GreekCross geometry + title (about to reinsert shifted)
+
+== 4. insert everything at its new position ==
+   GATE OXIDE 2 (new, single row): Metal_2 30, Metal_3 30, Isolation_1(BE-only) 12, Passivation 24, 24 labels, 1 title
+   GATE OXIDE 1 (moved): shifted dy=896.0
+   TLM+GreekCross (moved): shifted dy=1013.0
+   Greek-cross title added
+   MIS_CV_Block restored at its original position
+
+== verification
+   MIS_CV_Block present: yes
+   row1(TLM+GX) vs row2(OXIDE1) overlap um2: 0.0
+   row2(OXIDE1) vs row3(OXIDE2) overlap um2: 0.0
+   row3(OXIDE2) vs MIS_CV_Block overlap um2: 0.0
+   row2(OXIDE1) vs MIS_CV_Block overlap um2: 0.0
+   row1(TLM+GX) vs MIS_CV_Block overlap um2: 0.0
+   GATE OXIDE 1 geometry congruent after un-shifting (xor area um2): 44994.278044
+Traceback (most recent call last):
+  File "C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v45_HK\build_v45.py", line 222, in <module>
+    exec(open(os.path.join(HERE, 'verify_v45.py'), encoding='utf-8').read())
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<string>", line 47, in <module>
+AssertionError

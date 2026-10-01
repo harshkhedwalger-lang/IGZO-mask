@@ -1,0 +1,45 @@
+== A. Memristors_Gated: compact pad-out
+   device footprint 356.0 x 277.1 um (v47: 526 x 427)
+   Memristors_Gated TOP bbox [4000.0, 70.0, 5574.0, 1644.5]
+
+== B. MEM_HIGH_VALUE: compact arms around untouched cores
+   core (310,-220): W w=31.4 E w=31.4 N w=30.0 S w=30.0 5th=Metal_1
+   core (310,-1020): W w=31.4 E w=31.4 N w=30.0 S w=30.0 5th=Metal_1
+   core (310,-1820): W w=31.4 E w=31.4 N w=30.0 S w=30.0 5th=Metal_1
+   core (310,-2620): W w=31.4 E w=31.4 N w=30.0 S w=30.0 5th=Metal_1
+   core (990,-220): W w=31.4 E w=31.4 N w=30.0 S w=30.0 5th=Metal_3
+   core (990,-1020): W w=31.4 E w=31.4 N w=30.0 S w=30.0 5th=None
+   core (990,-1820): W w=36.2 E w=36.2 N w=30.0 S w=30.0 5th=Metal_3
+   core (990,-2620): W w=36.2 E w=36.2 N w=30.0 S w=30.0 5th=None
+   102 label glyph polygons re-anchored
+   MEM_HIGH_VALUE TOP bbox [-3169.5, -4737.1, -2119.0, -2510.0] (v47: -3169.5,-5762.1,-1868,-2510)
+
+== C. TestStructures: single column, gated VdP + Greek cross under the TLM
+   captured: TLM 64 shapes + 10 labels | VdP 37 shapes | Gate-Ox-1 112 shapes + 25 labels | Greek cross 18 TOP shapes
+   duplicate v45 VdP title: 19 glyph polygons to delete (3806 um2)
+   S/D contact windows sitting on the gate removed: VdP 4, Greek cross 4
+   Gate-Ox-1 dy=+10.0 | VdP+Greek row y -198.0..522.0 | label y 562.0 | TLM dy=+88.9
+   column top (TLM title) local y ~1900.0; 1T1R bottom is local 1983.2
+
+== verification
+   A: junction core (x80..176, y80..220) identical in all 14 gated memristors
+   B: probe pads per device  v47 [5, 5, 5, 5, 5, 4, 5, 4]  v48 [5, 5, 5, 5, 5, 4, 5, 4]
+   B: 8 device cores preserved; all 38 terminals kept, 5th pads on the same nets as in v47
+   C: TestStructures + Greek-cross shape areas account exactly (minus duplicate title, minus 8 gate-shorting windows)
+   Iso1 windows exposing M1 under IGZO (mask-wide): 0
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   Memristors_Gated gaps < 60 um to neighbours: none
+   MEM_HIGH_VALUE gaps < 60 um to neighbours: none
+   TestStructures gaps < 60 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61   (v42-v47 baseline 25 / 61)
+   DRC 2um  Memristors_Gated: width 0 space 0
+   DRC 2um  MEM_HIGH_VALUE: width 0 space 0
+   DRC 2um  TestStructures: width 0 space 0
+   cells changed outside the intended set: []
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v48_HK\v48_HK.oas

@@ -1,0 +1,50 @@
+== 1. redesigning pads in all 42 device cells (in place, channel geometry untouched)
+   distinct new device bboxes: 1
+   new device bbox: 526.00 x 427.12 um  (origin offset -95.00,-175.00)
+
+== 2. rebuild the 42-device grid at the new pitch
+   60 own header/title glyphs in Memristors_Gated (to redraw)
+   erasing all 42 old device instances (14 will be re-placed, redesigned; 28 dropped)
+   new grid footprint: 2284 x 2308 um  (was 2284 x 1439 before this pass)
+   14 devices placed on the new grid
+   title + 4 length-group headers redrawn (single-column layout, 1 repeat/type)
+
+== 3. find a clear placement for the whole (much bigger) block
+   full flattened block region bbox um: [4616.0, 5160.8, 6900.0, 7605.2]
+   placed at TOP bbox (4000000,-800000;6284000,1644488)
+
+== verification
+   device-to-device overlaps: 0
+   label-to-device collisions: 0
+   device set unchanged: True
+   IGZO channel geometry unchanged in all 14 devices
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   Memristors_Gated new TOP bbox (4000000,-800000;6284000,1644488)
+   Memristors_Gated gaps < 60 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  Memristors_Gated: width 0 space 0
+   cells other than Memristors_Gated/its 42 devices whose geometry changed vs v46: ['TOP']
+   (device-redesign checks passed; continuing to row1 tidy-up before writing output)
+
+== 4. align TLM_BACK_BIAS and the Greek-cross structure to a common baseline (row1 tidy-up)
+   TLM bottom 643.1  Greek-cross bottom 492.0  -> shifting Greek-cross up by 151.1um to match
+   moved 37 Greek-cross shapes (structure + its title)
+   Greek-cross new top in TOP coords: -2880.5, nearest obstacle (1T1R) bottom -2813.5, margin 67.0 um
+
+== final verification (device redesign + row1 tidy-up together)
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61
+   cells other than Memristors_Gated/TestStructures/its devices whose geometry changed vs v46: []
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v47_HK\v47_HK.oas

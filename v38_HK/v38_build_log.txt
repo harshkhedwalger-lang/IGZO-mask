@@ -1,0 +1,43 @@
+﻿MIS_Capacitors_v2 block (0,-870000;4441996,126000)
+placed at (-7250000,1441900;-2808004,2437900)
+old MIS_Capacitors cell kept in the file, unplaced, for reference/diff
+
+== verification
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+
+   -- guard isolation + net check per device --
+   6 guarded caps (3 nets/3 pads each) + OPEN (3 isolated nets) + SHORT (inner+TE merged) -- mismatches: 0
+
+   -- guard-ring gap (measured from real geometry, not the GGAP constant) --
+   MISv2_S50_F1         guard<->inner real gap = 10.0 um
+   MISv2_S100_F1        guard<->inner real gap = 10.0 um
+   MISv2_S100_F4        guard<->inner real gap = 10.0 um
+   MISv2_S100_F8        guard<->inner real gap = 10.0 um
+   MISv2_S200_F1        guard<->inner real gap = 10.0 um
+   MISv2_S200_F4        guard<->inner real gap = 10.0 um
+   MISv2_OPEN_S100      guard<->inner real gap = 10.0 um
+   MISv2_SHORT_S100     guard<->inner real gap = 10.0 um
+   guard-ring short check: 0 shorts, 0 total problems
+
+   -- single-edge containment + measured (Area, Perimeter) for the regression --
+   MISv2_S50_F1         M1 subset of IGZO: True   IGZO subset of M3: True   area=  2500.0 um2  perimeter=  200.0 um
+   MISv2_S100_F1        M1 subset of IGZO: True   IGZO subset of M3: True   area= 10000.0 um2  perimeter=  400.0 um
+   MISv2_S100_F4        M1 subset of IGZO: True   IGZO subset of M3: True   area=  6228.7 um2  perimeter=  928.0 um
+   MISv2_S100_F8        M1 subset of IGZO: True   IGZO subset of M3: True   area=  5893.4 um2  perimeter= 1632.0 um
+   MISv2_S200_F1        M1 subset of IGZO: True   IGZO subset of M3: True   area= 40000.0 um2  perimeter=  800.0 um
+   MISv2_S200_F4        M1 subset of IGZO: True   IGZO subset of M3: True   area= 23885.4 um2  perimeter= 1928.0 um
+   (Area,Perimeter) pairs: [(2500, 200), (10000, 400), (6229, 928), (5893, 1632), (40000, 800), (23885, 1928)]
+   worst-case 2x2 determinant across all pairs: 42922 (nonzero & not tiny -> regression is well-conditioned)
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   MIS_Capacitors_v2 gaps < 80 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark / label keep-out violations: 0
+   in-cell label collisions: 0
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  MIS_Capacitors_v2: width 0 space 0
+   existing cells whose geometry changed vs v37: ['TOP']
+   old MIS_Capacitors cell still present (unplaced): True
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v38_HK\v38_HK.oas

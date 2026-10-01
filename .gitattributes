@@ -1,0 +1,8 @@
+*.oas binary
+*.OAS binary
+*.gds binary
+*.GDS binary
+*.pptx binary
+*.png binary
+*.py text eol=lf
+*.md text eol=lf

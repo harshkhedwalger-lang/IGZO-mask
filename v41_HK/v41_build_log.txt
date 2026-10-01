@@ -1,0 +1,22 @@
+﻿== retype the gate: Metal_1 -> Metal_2, Transistors_BottomGate_HfO2Only
+   32 gate shapes moved Metal_1 -> Metal_2
+   Metal_1 shapes remaining in cell (should be only the 12 heading/label glyphs): 53
+   old heading bbox -1992,1885,-61,1921  (53 glyphs)
+   new heading: TFT BOTTOM GATE STAGGERED - GATE = M2, HFO2 ONLY (AL2O3 BELOW M2, SAME WAFER)   placed at y >= 1875 body top was 1835
+
+== verification
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   gate geometry congruence (old M1 vs new M2, position/shape only): diff = 0.0000 um2 (must be 0)
+   net topology: Transistors_BottomGate_HfO2Only 36 nets  vs  reference Transistors_BottomGate 36 nets
+   pad distribution match: True
+   other cells with a Metal_2 change: 0
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   heading label collisions: 0
+   TEXT$ collisions: 0
+   DRC 2um  TOP: width 25 space 61
+   DRC 2um  Transistors_BottomGate_HfO2Only: width 0 space 0
+   cells OTHER than Transistors_BottomGate_HfO2Only whose geometry changed vs v40: ['TOP']
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v41_HK\v41_HK.oas

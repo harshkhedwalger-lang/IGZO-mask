@@ -1,0 +1,26 @@
+== 1. column-first re-pack of PERF_TFT and SYN_1T1R
+   PERF_TFT: 14 devices in 4 columns [3, 4, 4, 3], column height limit 3016 um
+   SYN_1T1R: 8 devices in 2 columns [4, 4], column height limit 3016 um
+   PERF_TFT TOP bbox [-6600.0, 1424.0, -4710.0, 4545.0]  (v48: [-6600.0, 2844.0, -1573.0, 4545.0] )
+   SYN_1T1R TOP bbox [-4590.0, 1444.0, -3130.0, 4545.0]  (v48: [-1100.0, 2914.0, 2750.0, 4545.0] )
+
+== 2. STEP_COVERAGE next to the TestStructures column
+   STEP_COVERAGE TOP bbox [620.0, -4410.9, 1690.0, -2896.8]  (v48: [2985.0, 5048.3, 4055.0, 6562.4] )
+
+== verification
+   PERF_TFT: 14 devices, device pairs overlapping or < 20 um apart: 0
+   SYN_1T1R: 8 devices, device pairs overlapping or < 20 um apart: 0
+   connectivity findings: 0
+   overlay findings (ENC 3.0, OVL 2.0): 8
+       ('MEM_HIGH_VALUE', 'O1 Iso1 window not enclosed by M2') x 8
+   OVERLAP CBKR_Structures vs TOP-own 63
+   structure overlap um2: 63
+   PERF_TFT gaps < 60 um to neighbours: none
+   SYN_1T1R gaps < 60 um to neighbours: none
+   STEP_COVERAGE gaps < 60 um to neighbours: none
+   TEXT$ collisions: 0
+   alignment-mark keep-out violations: 0
+   DRC 2um  TOP: width 25 space 61   (baseline 25 / 61)
+   cells changed outside the intended set: []
+   PERF_TFT / SYN_1T1R content congruent (rigid instance moves only)
+written C:\Users\HAKH012F\Documents\PhD\00 IGZO masks\v49_HK\v49_HK.oas
