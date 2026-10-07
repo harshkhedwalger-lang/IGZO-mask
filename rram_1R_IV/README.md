@@ -101,3 +101,5 @@ These figures copy the style of a standard RRAM paper: serif font, boxed axes wi
 - `out/pub_<set>_combined`: both panels side by side.
 
 The LRS reads the same at + and − (it is ohmic), so the blue LRS dots sit inside the red squares.
+
+**Common sweep window (I-V figures):** the I-V panels show only −2.5 V to +4 V, the range both runs covered. Run 2_21 swept to −3 V (one stable-50 cycle to −3.5 V) and TE_SET to +5 V. The trim affects the display only: every R and ON/OFF value is still read from the full sweeps. To change the window, set `V_NEG_LIMIT` / `V_POS_LIMIT` in `publication_plots.py` (for example −2.0). Suggested caption wording: *"RESET sweeps of run 2_21 (to −3 V) are shown to −2.5 V, the common sweep limit."*

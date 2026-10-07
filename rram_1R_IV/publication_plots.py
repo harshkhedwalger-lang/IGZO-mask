@@ -19,6 +19,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "out")
 CC = 110e-6
 V_READ = "0.1V"
+# I-V display window = sweep range common to both runs (2_21: -3..+4 V, TE_SET: -2.5..+5 V).
+# Display only: R and ON/OFF values are read from the full sweeps.
+V_NEG_LIMIT, V_POS_LIMIT = -2.5, 4.0
 SETS = {  # name: (metrics file, I-V file, index column, x-axis label)
     "stable50": ("stable50_metrics.txt", "stable50_IV_data.txt", "sel_no", "Selected cycle"),
     "best50": ("endurance_read_voltages.txt", "best50_IV_data.txt", "best_no", "Selected cycle"),
@@ -52,6 +55,7 @@ def representative(m, idx):
 
 
 def draw_iv(ax, iv, idx, rep, n):
+    iv = iv[(iv.V_TE_V >= V_NEG_LIMIT - 1e-3) & (iv.V_TE_V <= V_POS_LIMIT + 1e-3)]
     for _, g in iv.groupby(idx):
         for _, d in g.groupby("sweep"):
             ax.plot(d.V_TE_V, d.I_TE_A.abs(), color=GREY, lw=0.6, alpha=0.8, zorder=1)
@@ -64,7 +68,7 @@ def draw_iv(ax, iv, idx, rep, n):
     ax.axvline(0, color="#888", lw=0.8, zorder=0)
     ax.set_yscale("log")
     ax.set_ylim(1e-12, 1e-2)
-    ax.set_xlim(iv.V_TE_V.min() - 0.3, iv.V_TE_V.max() + 0.3)
+    ax.set_xlim(V_NEG_LIMIT - 0.3, V_POS_LIMIT + 0.3)
     log_minor(ax)
     ax.set_xlabel(r"$V_{TE}$ (V)")
     ax.set_ylabel(r"$|I_{TE}|$ (A)")
