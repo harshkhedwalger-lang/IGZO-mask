@@ -92,3 +92,12 @@ Outputs:
 - `out/stable50_IV_semilog.png`: overlay of the 50 I-V loops.
 - `out/stable50_metrics.txt`: values per cycle.
 - `out/stable50_IV_data.txt`: raw V-I data of the 50 cycles.
+
+## Publication-style figures (`publication_plots.py`)
+These figures copy the style of a standard RRAM paper: serif font, boxed axes with inward ticks on all four sides, and a dashed grid. Each figure is saved as PNG (300 dpi) and as PDF (vector, for journals). The script makes them for both the stable-50 and the best-50 sets.
+
+- `out/pub_<set>_IV`: all 50 cycles in grey, with one typical cycle highlighted (SET in blue, RESET in red) and the CC line. The highlighted cycle is the one closest to the set median in R and switching voltage: 2_21 cycle 9 for stable50, TE_SET cycle 4 for best50.
+- `out/pub_<set>_endurance`: R at |V| = 100 mV. The SET sweep (+0.1 V) is drawn as blue circles and the RESET sweep (−0.1 V) as red squares; HRS markers are open and LRS markers filled. Below it is the window R_HRS/R_LRS, with a dashed line at 10×.
+- `out/pub_<set>_combined`: both panels side by side.
+
+The LRS reads the same at + and − (it is ohmic), so the blue LRS dots sit inside the red squares.
