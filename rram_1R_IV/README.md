@@ -70,3 +70,25 @@ Outputs:
 - `out/endurance_read_voltages.txt`: every R and ON/OFF value.
 - `out/endurance_read_voltages.png`: the 2 × 2 grid for all 50 cycles.
 - `out/endurance_read_voltages_TE_SET.png`: the TE_SET run against its own cycle numbers.
+
+## Most-stable 50 cycles (`stable50.py`)
+This is a second selection, made for an endurance plot with little cycle-to-cycle variation. From the 82 valid cycles, it keeps the 50 whose HRS and LRS (at ±0.1 V) fall in the narrowest common band. The band search found a centre of HRS+ ≈ 56 MΩ, HRS− ≈ 14 MΩ and LRS ≈ 9 kΩ, with a half-width of 0.79 decades. The selection takes 25 cycles from each run, plotted in measurement order as "selected cycle no." 1–50.
+
+**These cycles are not consecutive.** The run and original cycle number of every point are in `out/stable50_metrics.txt`. When you publish, call them "50 selected DC cycles", not consecutive endurance.
+
+| Read at 0.1 V | Best-50: spread | Stable-50: spread | Best-50: mean jump between cycles | Stable-50: mean jump between cycles |
+|---|---|---|---|---|
+| HRS + | 2.85 dec | 1.57 dec | 0.39 dec | 0.27 dec |
+| HRS − | 2.58 dec | 1.54 dec | 0.30 dec | 0.21 dec |
+| LRS | 1.58 dec | 1.53 dec | 0.32 dec | 0.32 dec |
+
+For the stable set, ON/OFF at +0.1 V has a median of 5.0 × 10³ and a minimum of 270. At −0.1 V the median is 1.4 × 10³ and the minimum 51.
+
+The −0.1 V HRS still steps up by about one decade at selected cycle 25 → 26, where the plot moves from run 2_21 to run TE_SET. This is a real difference between the two runs, and no choice of cycles removes it. To show a plot with no step, show one run only.
+
+Outputs:
+- `out/stable50_endurance_0p1V.png`: ±0.1 V endurance.
+- `out/stable50_endurance_4reads.png`: ±0.05 V and ±0.1 V endurance.
+- `out/stable50_IV_semilog.png`: overlay of the 50 I-V loops.
+- `out/stable50_metrics.txt`: values per cycle.
+- `out/stable50_IV_data.txt`: raw V-I data of the 50 cycles.
