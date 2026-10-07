@@ -44,3 +44,29 @@ The rejected cycles are listed in `out/cycle_metrics_all.txt` with `valid = Fals
 | ON/OFF | — | ≈ 1.3 × 10³ | 140 | 1.2 × 10⁵ |
 
 Run 2_21 gives HRS ≈ 1–4 MΩ, and run TE_SET gives HRS ≈ 10–50 MΩ, a wider window. The 2_21 run degrades after about cycle 27, when the device gets stuck in LRS.
+
+## Endurance at different read voltages (`endurance_read_voltages.py`)
+This reads each of the best-50 cycles at +0.05, −0.05, +0.1 and −0.1 V. Within one cycle (SET n, then RESET n):
+
+| Polarity | HRS read from | LRS read from |
+|---|---|---|
+| + | SET sweep, before switching (the state left by RESET n−1) | SET return sweep (rejected if still at compliance) |
+| − | RESET return sweep | RESET sweep, before switching |
+
+Run 2_21 used 0.1 V steps, so it has no ±0.05 V point. Those reads are left empty, not interpolated, so the 0.05 V panels show the 30 TE_SET cycles only.
+
+| Read | n | LRS median | HRS median | ON/OFF median | ON/OFF min |
+|---|---|---|---|---|---|
+| +0.05 V | 30 | 13.3 kΩ | 177 MΩ | 1.6 × 10⁴ | 19 |
+| −0.05 V | 30 | 13.5 kΩ | 59 MΩ | 5.9 × 10³ | 164 |
+| +0.1 V | 50 | 6.5 kΩ | 42 MΩ | 7.0 × 10³ | 19 |
+| −0.1 V | 50 | 6.3 kΩ | 21 MΩ | 2.7 × 10³ | 155 |
+
+On the TE_SET cycles alone, the LRS medians are 13.3–13.5 kΩ at 0.05 V and 12.7–12.8 kΩ at 0.1 V, and they are the same on both polarities. So the LRS is close to ohmic (resistive), and the lower 0.1 V median in the table only reflects the 2_21 cycles it adds.
+
+The HRS is higher on the + side and higher at 0.05 V than at 0.1 V, which means it is non-linear. At +0.05 V the HRS current falls to about 0.03–1 nA, close to the SMU noise floor, so ±0.1 V gives the more reliable HRS values. The one dip at + polarity (best no. 47 = TE_SET cycle 40, HRS ≈ 1 MΩ) is the state left by the failed RESET of rejected cycle 39. Cycle 40's own RESET gives a normal HRS of 32–47 MΩ on the − side.
+
+Outputs:
+- `out/endurance_read_voltages.txt`: every R and ON/OFF value.
+- `out/endurance_read_voltages.png`: the 2 × 2 grid for all 50 cycles.
+- `out/endurance_read_voltages_TE_SET.png`: the TE_SET run against its own cycle numbers.
