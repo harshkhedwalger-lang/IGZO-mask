@@ -130,3 +130,13 @@ Results over 50 consecutive cycles, read at 100 mV:
 - **Forming:** the forming sweep shows no abrupt forming event.
 
 **Known issue (fix pending):** the note in `out_8_81/forming.*` says "already 1 kΩ at 0.1 V". It read the return sweep. On the upward sweep the device is about 25 kΩ at 0.1 V (3.98 µA at 0.1001 V).
+
+## 1T1R device L20_2_2_3 — `onoff_stats_L20.py`
+Raw files are in `raw_L20_2_2_3/`: 150 consecutive cycles. The SET sweeps use V_G = 4.5 V. The RESET sweeps use V_G = 6.0 V for loops 1–101 and 7.0 V for loops 102–150. Resistance is read at |V_TE| = 0.1 V and includes the transistor channel in series.
+
+| | Median | Mean | Geometric mean | Min | Max |
+|---|---|---|---|---|---|
+| ON/OFF, SET sweep | **198×** | 239× | 200× | 53× | 2104× (cycle 1) |
+| ON/OFF, RESET sweep | **100×** | 101× | 95× | 24× | 238× |
+
+The median of 198× matches the reference figure's "SET: 198×". The SET-sweep ratios are strongly skewed (skewness 6.0): cycle 1 at 2104× and a few cycles above 500× pull the mean up to 239×. Report the median. Output: `out_L20_2_2_3/onoff_per_cycle.txt`.
