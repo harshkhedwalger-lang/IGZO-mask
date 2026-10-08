@@ -104,7 +104,7 @@ The LRS reads the same at + and − (it is ohmic), so the blue LRS dots sit insi
 
 **Common sweep window (I-V figures):** the I-V panels show only −2.5 V to +4 V, the range both runs covered. Run 2_21 swept to −3 V (one stable-50 cycle to −3.5 V) and TE_SET to +5 V. The trim affects the display only: every R and ON/OFF value is still read from the full sweeps. To change the window, set `V_NEG_LIMIT` / `V_POS_LIMIT` in `publication_plots.py` (for example −2.0). Suggested caption wording: *"RESET sweeps of run 2_21 (to −3 V) are shown to −2.5 V, the common sweep limit."*
 
-## Device 5_5 (2026-09-04) — `plot_5_5.py`
+## Device 5_5 (2026-09-04) — `plot_device.py 5_5`
 Raw files are in `raw_5_5/`: ID1 is empty (a timestamp only), ID2 is the forming sweep (0 → 10 V), ID3 the SET sweeps (0 → 3 V) and ID4 the RESET sweeps (0 → −2 V). All steps are 0.05 V and CC = 0.1 mA. The 50 consecutive cycles are all plotted in measurement order, with no selection. Outputs go to `out_5_5/`: `forming`, `IV`, `endurance` and `combined` (each as PNG and PDF), plus `cycle_metrics.txt` and `IV_all_cycles.txt`.
 
 On the SET sweep the current limit is active in both directions, so a read at the limit is left out instead of recorded as R = 0.1 V / 110 µA. That applies to the cycle-1 HRS (still LRS after forming) and to the LRS of cycles 1, 16, 18, 19, 25 and 32, which only tells us R ≤ 0.91 kΩ. The RESET sweep has no limit, so all of its reads are kept.
@@ -114,3 +114,19 @@ This device differs from 2_21 and TE_SET in four ways:
 - **Small window:** a median of about 25× (SET sweep) and about 26× (RESET sweep).
 - **Low SET voltage:** about 0.7 V.
 - **Mostly gradual RESET:** in 43 of 50 cycles the current is still rising at −2 V.
+
+## Device 8_81 (2026-09-04) — `plot_device.py 8_81`
+`plot_5_5.py` has become `plot_device.py <device>`, with per-device settings in `DEVICES`. Rerunning it for 5_5 reproduces `cycle_metrics.txt` and `IV_all_cycles.txt` exactly; only the auto y-limit of the window panel changed.
+
+Raw files are in `raw_8_81/`. The settings differ from 5_5:
+- **CC = 0.5 mA:** the SMU limit plateau is 530 µA.
+- **SET range:** 0 → 3 V for cycles 1–15, then 0 → 2 V. The I-V plot shows up to +2 V.
+- **RESET range:** 0 → −2.2 V.
+
+Results over 50 consecutive cycles, read at 100 mV:
+- **Window:** median ON/OFF of 555× (SET sweep) and 474× (RESET sweep); the means are 714× and 534×.
+- **Resistances:** HRS ≈ 0.15–2 MΩ, LRS ≈ 0.35–9 kΩ.
+- **Cycle 1:** reads 1.04× on the SET sweep because it starts in LRS after the forming sweep.
+- **Forming:** the forming sweep shows no abrupt forming event.
+
+**Known issue (fix pending):** the note in `out_8_81/forming.*` says "already 1 kΩ at 0.1 V". It read the return sweep. On the upward sweep the device is about 25 kΩ at 0.1 V (3.98 µA at 0.1001 V).
