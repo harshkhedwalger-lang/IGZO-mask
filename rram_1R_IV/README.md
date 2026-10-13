@@ -163,3 +163,5 @@ Reads at 50 mV and 100 mV agree closely: both states are nearly ohmic, and all r
 Outputs (PNG + PDF) are `IV`, `endurance_0p05V`, `endurance_0p1V`, `endurance_compare` and `combined`, plus `cycle_metrics.txt`, `IV_kept_cycles.txt` and `summary.txt`.
 
 **Highlighted cycle (1T1R 2 × 2):** the I-V plot highlights the *best* cycle, now cycle 34, rather than a typical one. Each kept cycle is scored by the sum of the ranks of its SET loop area, its RESET loop area, and min(ON/OFF SET, ON/OFF RESET) at 0.1 V. Loop area is the log-current gap between the two sweep directions, integrated over |V| = 0.1–2 V. Cycle 34 shows an abrupt SET at ≈ 1.0 V. The legend says "best cycle", so the figure does not claim it is typical.
+
+**Journal versions (1T1R 2 × 2):** the `journal_IV`, `journal_endurance_50mV`, `journal_endurance_100mV` and `journal_combined` figures (PNG + PDF) show only data, axes and a plain legend: no V_GS, labels, arrows, captions, reference line or grid. The data behind them is in `out_1T1R_2x2/journal_data/`, as tab-separated text ready for Origin or Excel. `1T1R_2x2_journal_package.zip` holds every journal figure and data file in one download.

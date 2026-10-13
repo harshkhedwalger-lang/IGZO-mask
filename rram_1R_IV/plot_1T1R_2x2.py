@@ -152,7 +152,7 @@ with open(os.path.join(OUT, "summary.txt"), "w") as fh:
 
 
 # ---- figure pieces -----------------------------------------------------------------------
-def draw_iv(ax):
+def draw_iv(ax, clean=False):
     for (_, _), d in IV.groupby(["cycle", "sweep"]):
         ax.plot(d.V_TE_V, d.I_TE_A.abs(), color=GREY, lw=0.6, alpha=0.8, zorder=1)
     r = IV[IV.cycle == REP]
@@ -160,10 +160,14 @@ def draw_iv(ax):
         d = r[r.sweep == sweep]
         ax.plot(d.V_TE_V, d.I_TE_A.abs(), color=col, lw=2.2, zorder=3, label=sweep)
     ax.plot([], [], color=GREY, lw=1, label=f"{N} cycles")
-    ax.axvline(0, color="#888", lw=0.8, zorder=0)
     ax.set_yscale("log"); ax.set_ylim(1e-10, 1e-2); log_minor(ax)
     ax.set_xlim(-4.3, 4.3)
     ax.set_xlabel(r"$V_{TE}$ (V)"); ax.set_ylabel(r"$|I_{TE}|$ (A)")
+    if clean:                                    # journal version: data, axes and legend only
+        ax.grid(False)
+        ax.legend(loc="lower left")
+        return
+    ax.axvline(0, color="#888", lw=0.8, zorder=0)
     ax.text(0.97, 0.96, rf"$V_{{GS}}$(SET) = +{VG_SET:.1f} V", transform=ax.transAxes, ha="right", va="top",
             color=BLUE, fontsize=11)
     ax.text(0.97, 0.90, rf"$V_{{GS}}$(RESET) = +{VG_RESET:.1f} V", transform=ax.transAxes, ha="right", va="top",
@@ -180,7 +184,7 @@ def draw_iv(ax):
     ax.legend(loc="lower left", title=f"best cycle ({REP})", title_fontsize=10)
 
 
-def draw_endurance(ax_r, ax_w, vr, legend=True):
+def draw_endurance(ax_r, ax_w, vr, legend=True, clean=False):
     t = f"{vr:g}V"
     x = K.cycle
     kw = dict(s=26, linewidths=1.0, zorder=3)
@@ -190,7 +194,13 @@ def draw_endurance(ax_r, ax_w, vr, legend=True):
     ax_r.scatter(x, K[f"LRS_RESET_{t}"], marker="s", color=RED, label="LRS (RESET sweep)", s=34, zorder=3)
     ax_r.set_yscale("log"); ax_r.set_ylim(2e3, 3e5); log_minor(ax_r)
     ax_r.set_ylabel(r"$R$ at $V_{read}$ ($\Omega$)")
-    if legend:
+    if clean:                                    # journal version: no titles, no reference line, no grid
+        ax_r.set_ylim(2e3, 1e6)
+        ax_r.set_ylabel(rf"$R$ at {vr:g} V ($\Omega$)")
+        h, l = ax_r.get_legend_handles_labels()
+        ax_r.legend([h[i] for i in (0, 2, 1, 3)], [l[i] for i in (0, 2, 1, 3)], ncol=2, fontsize=9.5,
+                    loc="upper center", frameon=False, handletextpad=0.3, columnspacing=1.0)
+    elif legend:
         h, l = ax_r.get_legend_handles_labels()
         ax_r.legend([h[i] for i in (0, 2, 1, 3)], [l[i] for i in (0, 2, 1, 3)], ncol=2, fontsize=9.5,
                     loc="lower center", bbox_to_anchor=(0.5, 1.01), handletextpad=0.3, columnspacing=1.0,
@@ -200,11 +210,14 @@ def draw_endurance(ax_r, ax_w, vr, legend=True):
     ax_r.tick_params(labelbottom=False)
     ax_w.scatter(x, K[f"ONOFF_SET_{t}"], marker="o", color=BLUE, s=18, label="SET", zorder=3)
     ax_w.scatter(x, K[f"ONOFF_RESET_{t}"], marker="s", color=RED, s=18, label="RESET", zorder=3)
-    ax_w.axhline(10, color="#999", ls="--", lw=1)
+    if not clean:
+        ax_w.axhline(10, color="#999", ls="--", lw=1)
     ax_w.set_yscale("log"); ax_w.set_ylim(1, 100); log_minor(ax_w)
     ax_w.set_ylabel(r"$R_{HRS}/R_{LRS}$"); ax_w.set_xlabel("Cycle")
     ax_w.legend(ncol=2, loc="upper center", frameon=False, fontsize=10, handletextpad=0.2)
     ax_w.set_xlim(0, M.cycle.max() + 2)
+    if clean:
+        ax_r.grid(False); ax_w.grid(False)
 
 
 def endurance_axes(fig, spec):
@@ -255,6 +268,55 @@ fig.text(0.73, -0.01, f"Endurance / Window (SET: {med('ONOFF_SET', 0.1):.1f}×, 
          ha="center", style="italic", color="#3a4a6b", fontsize=12)
 fig.text(0.5, -0.05, EXCL, ha="center", fontsize=9, color="#666")
 save(fig, "combined", bbox_inches="tight")
+
+# ---- journal versions: no annotations, no V_GS, no captions, no grid --------------------------
+fig, ax = plt.subplots(figsize=(5.2, 4.4)); draw_iv(ax, clean=True); fig.tight_layout(); save(fig, "journal_IV")
+for vr in V_READS:
+    fig = plt.figure(figsize=(5.6, 5.2))
+    draw_endurance(*endurance_axes(fig, fig.add_gridspec(1, 1)[0]), vr, clean=True)
+    fig.tight_layout(); save(fig, f"journal_endurance_{vr * 1e3:.0f}mV")
+fig = plt.figure(figsize=(11.2, 4.6))
+gs = fig.add_gridspec(1, 2, width_ratios=[1, 1.05], wspace=0.28)
+draw_iv(fig.add_subplot(gs[0]), clean=True)
+draw_endurance(*endurance_axes(fig, gs[1]), 0.1, clean=True)
+save(fig, "journal_combined", bbox_inches="tight")
+
+# ---- data behind the journal figures (tab-separated, Origin / Excel ready) + one zip to download ----
+import zipfile
+DATA = os.path.join(OUT, "journal_data")
+os.makedirs(DATA, exist_ok=True)
+hdr = (f"# 1T1R IGZO 2x2, {N} cycles (removed: " + ", ".join(map(str, M.cycle[~M.kept])) + "), "
+       f"V_G(SET) = {VG_SET:.2f} V, V_G(RESET) = {VG_RESET:.2f} V\n")
+def write(name, df, note):
+    with open(os.path.join(DATA, name), "w") as fh:
+        fh.write(hdr + f"# {note}\n")
+        df.to_csv(fh, sep="\t", index=False, float_format="%.6e", na_rep="NaN")
+# I-V: highlighted cycle, SET and RESET side by side
+r = IV[IV.cycle == REP]
+a, b = r[r.sweep == "SET"].reset_index(drop=True), r[r.sweep == "RESET"].reset_index(drop=True)
+write(f"IV_best_cycle{REP}.txt", pd.DataFrame({"V_SET_V": a.V_TE_V, "I_SET_A": a.I_TE_A,
+                                                 "V_RESET_V": b.V_TE_V, "I_RESET_A": b.I_TE_A}),
+      f"highlighted (best) cycle {REP}; plot |I| on a log axis")
+# I-V: all kept cycles, one V/I column pair per cycle and sweep (wide) and one long table
+wide = pd.concat([pd.DataFrame({f"c{c}_{sw}_V": g.V_TE_V.values, f"c{c}_{sw}_I": g.I_TE_A.values})
+                  for (c, sw), g in IV.groupby(["cycle", "sweep"], sort=True)], axis=1)
+write("IV_all_cycles_wide.txt", wide, "one V/I column pair per cycle and sweep (grey curves)")
+write("IV_all_cycles_long.txt", IV, "same data, long format: cycle, sweep, V, I")
+# endurance at each read voltage
+for vr in V_READS:
+    t = f"{vr:g}V"
+    write(f"endurance_{vr * 1e3:.0f}mV.txt",
+          K[["cycle", f"HRS_SET_{t}", f"LRS_SET_{t}", f"HRS_RESET_{t}", f"LRS_RESET_{t}",
+             f"ONOFF_SET_{t}", f"ONOFF_RESET_{t}"]].rename(columns=lambda c: c.replace(f"_{t}", "")),
+          f"resistance (ohm) read at |V| = {vr * 1e3:.0f} mV; SET sweep = + polarity, RESET sweep = - polarity")
+write("statistics.txt", summ, "median is the value to report; mean, geometric mean, P10/P90 for reference")
+write("cycle_selection.txt", M[["cycle", "kept", "reason"]], "every measured cycle and why it was kept or removed")
+with zipfile.ZipFile(os.path.join(OUT, "1T1R_2x2_journal_package.zip"), "w", zipfile.ZIP_DEFLATED) as z:
+    for f in sorted(os.listdir(OUT)):
+        if f.startswith("journal_") and f.endswith((".png", ".pdf")):
+            z.write(os.path.join(OUT, f), f"figures/{f}")
+    for f in sorted(os.listdir(DATA)):
+        z.write(os.path.join(DATA, f), f"data/{f}")
 
 print(f"kept {N} of {len(M)}; removed:", dict(zip(M.cycle[~M.kept], M.reason[~M.kept])))
 print(f"V_G SET {VG_SET:.3f} V, RESET {VG_RESET:.3f} V; highlighted (best) cycle {REP}; LRS median used for rule {lrs_med:.0f}")
