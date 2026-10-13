@@ -160,7 +160,7 @@ def draw_iv(ax, clean=False):
         d = r[r.sweep == sweep]
         ax.plot(d.V_TE_V, d.I_TE_A.abs(), color=col, lw=2.2, zorder=3, label=sweep)
     ax.plot([], [], color=GREY, lw=1, label=f"{N} cycles")
-    ax.set_yscale("log"); ax.set_ylim(1e-10, 1e-2); log_minor(ax)
+    ax.set_yscale("log"); ax.set_ylim(1e-7, 1e-2); log_minor(ax)   # current axis from 10^-7 A
     ax.set_xlim(-4.3, 4.3)
     ax.set_xlabel(r"$V_{TE}$ (V)"); ax.set_ylabel(r"$|I_{TE}|$ (A)")
     if clean:                                    # journal version: data, axes and legend only
