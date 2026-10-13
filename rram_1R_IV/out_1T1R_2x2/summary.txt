@@ -1,5 +1,5 @@
 # 1T1R, IGZO 2 × 2 overlap: 47 cycles kept of 50; removed: cycle 1: forming (pristine 237 MOhm at 0.1 V); cycle 21: failed SET (LRS 37.8 kOhm > 2 x median 5.4 kOhm); cycle 36: failed SET (LRS 18.2 kOhm > 2 x median 5.4 kOhm)
-# V_G(SET) = 6.69 V, V_G(RESET) = 7.01 V, representative cycle 39
+# V_G(SET) = 6.69 V, V_G(RESET) = 7.01 V, highlighted (best) cycle 34
 read	quantity	median	mean	geo_mean	min	max	P10	P90
 50 mV	ONOFF_SET	7.948	8.319	7.806	2.78	21.56	5.169	12.07
 50 mV	ONOFF_RESET	9.547	8.879	8.383	3.208	17.86	5.111	11.69

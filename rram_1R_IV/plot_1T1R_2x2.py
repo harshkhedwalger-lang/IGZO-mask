@@ -113,12 +113,26 @@ with open(os.path.join(OUT, "IV_kept_cycles.txt"), "w") as fh:
              f"V_G(RESET) = {VG_RESET:.2f} V\n")
     IV.to_csv(fh, sep="\t", index=False, float_format="%.6e")
 
-# representative cycle: closest to the median in log R (0.1 V reads). Vset is not used: the SET is gradual in
-# most cycles, so the "largest current step" voltage is not a well-defined switching voltage here.
-cols = ["HRS_SET_0.1V", "LRS_SET_0.1V", "LRS_RESET_0.1V", "HRS_RESET_0.1V"]
-z = np.log10(K[cols])
-z = (z - z.median()) / (z.max() - z.min())
-REP = int(K.loc[z.abs().sum(axis=1).idxmin(), "cycle"])
+# highlighted cycle = the "best" cycle: widest SET and RESET hysteresis loops and the largest window. Score = sum of
+# the ranks of (SET loop area, RESET loop area, min(ON/OFF SET, ON/OFF RESET) at 0.1 V); loop area = integral over
+# |V| = 0.1-2 V of the log10-current gap between the two branches of a sweep (decades x V).
+def loop_area(a, b):
+    g = np.arange(0.1, 2.0001, 0.05)
+    la = np.interp(g, a.V.abs(), np.log10(a.I.abs() + 1e-13))
+    lb = np.interp(g, b.V.abs(), np.log10(b.I.abs() + 1e-13))
+    return np.trapezoid(la - lb, g)
+
+
+areas = []
+for n in K.cycle:
+    s_, r_ = curves[n]
+    ks, kr = np.argmax(s_.V.values), np.argmin(r_.V.values)
+    areas.append((loop_area(s_.iloc[ks:].iloc[::-1], s_.iloc[:ks + 1]),
+                  loop_area(r_.iloc[:kr + 1], r_.iloc[kr:].iloc[::-1])))
+K["SET_loop_area"], K["RESET_loop_area"] = zip(*areas)
+score = (K.SET_loop_area.rank() + K.RESET_loop_area.rank()
+         + np.minimum(K["ONOFF_SET_0.1V"], K["ONOFF_RESET_0.1V"]).rank())
+REP = int(K.loc[score.idxmax(), "cycle"])
 
 # ---- summary (median is the number to report; mean shown for comparison) --------------------
 summ = []
@@ -133,7 +147,7 @@ summ = pd.DataFrame(summ)
 with open(os.path.join(OUT, "summary.txt"), "w") as fh:
     fh.write(f"# {DEVICE_LABEL}: {N} cycles kept of {len(M)}; removed: "
              + "; ".join(f"cycle {c}: {r}" for c, r in zip(M.cycle[~M.kept], M.reason[~M.kept])) + "\n")
-    fh.write(f"# V_G(SET) = {VG_SET:.2f} V, V_G(RESET) = {VG_RESET:.2f} V, representative cycle {REP}\n")
+    fh.write(f"# V_G(SET) = {VG_SET:.2f} V, V_G(RESET) = {VG_RESET:.2f} V, highlighted (best) cycle {REP}\n")
     summ.to_csv(fh, sep="\t", index=False, float_format="%.4g")
 
 
@@ -155,7 +169,15 @@ def draw_iv(ax):
     ax.text(0.97, 0.90, rf"$V_{{GS}}$(RESET) = +{VG_RESET:.1f} V", transform=ax.transAxes, ha="right", va="top",
             color=RED, fontsize=11)
     ax.text(0.03, 0.96, DEVICE_LABEL, transform=ax.transAxes, ha="left", va="top", color="#444", fontsize=10)
-    ax.legend(loc="lower right")
+    # mark the SET jump of the highlighted cycle (largest single-step current rise above 0.2 V)
+    up = r[r.sweep == "SET"]
+    up = up.iloc[:np.argmax(up.V_TE_V.values) + 1]
+    up = up[up.V_TE_V >= 0.2]
+    kj = np.argmax(np.diff(np.log10(up.I_TE_A.abs().values))) + 1
+    vj, ij = up.V_TE_V.values[kj], up.I_TE_A.abs().values[kj]
+    ax.annotate(f"SET ≈ {vj:.1f} V", xy=(vj, ij), xytext=(vj + 0.9, ij / 30), color=BLUE, fontsize=11,
+                arrowprops=dict(arrowstyle="->", color=BLUE, lw=1.2))
+    ax.legend(loc="lower left", title=f"best cycle ({REP})", title_fontsize=10)
 
 
 def draw_endurance(ax_r, ax_w, vr, legend=True):
@@ -235,7 +257,7 @@ fig.text(0.5, -0.05, EXCL, ha="center", fontsize=9, color="#666")
 save(fig, "combined", bbox_inches="tight")
 
 print(f"kept {N} of {len(M)}; removed:", dict(zip(M.cycle[~M.kept], M.reason[~M.kept])))
-print(f"V_G SET {VG_SET:.3f} V, RESET {VG_RESET:.3f} V; representative cycle {REP}; LRS median used for rule {lrs_med:.0f}")
+print(f"V_G SET {VG_SET:.3f} V, RESET {VG_RESET:.3f} V; highlighted (best) cycle {REP}; LRS median used for rule {lrs_med:.0f}")
 print(summ.to_string(index=False, float_format="%.4g"))
 print("Vset median", K.Vset_V.median(), " cycles with window < 10x @0.1V (SET/RESET):",
       int((K["ONOFF_SET_0.1V"] < 10).sum()), int((K["ONOFF_RESET_0.1V"] < 10).sum()))

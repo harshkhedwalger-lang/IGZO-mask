@@ -161,3 +161,5 @@ That leaves 47 cycles. Medians over them:
 Reads at 50 mV and 100 mV agree closely: both states are nearly ohmic, and all read currents are ≥ 1 µA, far above the noise floor. The window is small, about 8–9×, because the HRS is only about 40 kΩ. The resistances include the TFT channel in series. The SET is gradual in most cycles, so no switching voltage is reported.
 
 Outputs (PNG + PDF) are `IV`, `endurance_0p05V`, `endurance_0p1V`, `endurance_compare` and `combined`, plus `cycle_metrics.txt`, `IV_kept_cycles.txt` and `summary.txt`.
+
+**Highlighted cycle (1T1R 2 × 2):** the I-V plot highlights the *best* cycle, now cycle 34, rather than a typical one. Each kept cycle is scored by the sum of the ranks of its SET loop area, its RESET loop area, and min(ON/OFF SET, ON/OFF RESET) at 0.1 V. Loop area is the log-current gap between the two sweep directions, integrated over |V| = 0.1–2 V. Cycle 34 shows an abrupt SET at ≈ 1.0 V. The legend says "best cycle", so the figure does not claim it is typical.
