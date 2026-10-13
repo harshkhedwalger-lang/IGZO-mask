@@ -140,3 +140,24 @@ Raw files are in `raw_L20_2_2_3/`: 150 consecutive cycles. The SET sweeps use V_
 | ON/OFF, RESET sweep | **100×** | 101× | 95× | 24× | 238× |
 
 The median of 198× matches the reference figure's "SET: 198×". The SET-sweep ratios are strongly skewed (skewness 6.0): cycle 1 at 2104× and a few cycles above 500× pull the mean up to 239×. Report the median. Output: `out_L20_2_2_3/onoff_per_cycle.txt`.
+
+## 1T1R, IGZO 2 × 2 overlap (2026-06-18) — `plot_1T1R_2x2.py`
+Raw files are in `raw_1T1R_2x2/`:
+- **SET:** `TE_SET_ID3-2.txt`, 50 loops, V_TE 0 → +4 V → 0 in 0.05 V steps, V_G = 6.69 V.
+- **RESET:** `TE_SET_ID4-3.txt`, 50 loops, 0 → −4 V → 0, V_G = 7.0 V.
+- **Not used:** both `TE_SET_ID1-1*` files (timestamp only), and `TE_SET_ID3-2_20260914_180932.txt`, a separate 2026-09-14 session with 4 SET loops at V_G = 5.8 V, its last loop cut off and no RESET file.
+
+**Cycles removed (by rule, listed in `out_1T1R_2x2/cycle_metrics.txt`):**
+- **Cycle 1 (forming):** SET loop 1 starts pristine at 237 MΩ (0.1 V) and forms abruptly at ≈ 3.05 V into the 1 mA SMU limit.
+- **Cycles 21 and 36 (failed SET):** their SET-sweep LRS (37.8 and 18.2 kΩ) is more than 2× the median of 5.4 kΩ. No other cycle meets this rule.
+
+That leaves 47 cycles. Medians over them:
+
+| Read | ON/OFF, SET sweep | ON/OFF, RESET sweep | HRS (SET / RESET sweep) | LRS (SET / RESET sweep) |
+|---|---|---|---|---|
+| 50 mV | 7.9× | 9.5× | 41.7 / 46.2 kΩ | 5.32 / 5.05 kΩ |
+| 100 mV | 7.4× | 9.1× | 40.1 / 43.5 kΩ | 5.30 / 5.02 kΩ |
+
+Reads at 50 mV and 100 mV agree closely: both states are nearly ohmic, and all read currents are ≥ 1 µA, far above the noise floor. The window is small, about 8–9×, because the HRS is only about 40 kΩ. The resistances include the TFT channel in series. The SET is gradual in most cycles, so no switching voltage is reported.
+
+Outputs (PNG + PDF) are `IV`, `endurance_0p05V`, `endurance_0p1V`, `endurance_compare` and `combined`, plus `cycle_metrics.txt`, `IV_kept_cycles.txt` and `summary.txt`.
