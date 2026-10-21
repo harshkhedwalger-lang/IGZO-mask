@@ -1,7 +1,8 @@
 # RRAM / 1T1R I-V data — start here
 
 This folder is separate from the mask work in the repo root. It holds raw SMU I-V data, analysis scripts and plots.
-Full per-dataset notes: `README.md` (same folder). Every script runs standalone: `python <script>.py`
+Full per-dataset notes: `README.md` (same folder). **Writing the paper: `PAPER_CONTEXT.md`** (single source of truth
+for numbers, captions and open `[CONFIRM]` items; `/rram-paper <task>` loads it). Every script runs standalone: `python <script>.py`
 (needs numpy, pandas and matplotlib; `numpy.trapezoid`, not `trapz`).
 
 ## Datasets
